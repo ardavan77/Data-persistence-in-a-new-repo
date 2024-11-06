@@ -16,7 +16,7 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         DataManager.Instance.LoadData();
-        if (DataManager.Instance.records != null && SceneManager.GetActiveScene().buildIndex == 0)
+        if (DataManager.Instance.records.Count>0 && SceneManager.GetActiveScene().buildIndex == 0)
         {
             List<DataManager.PlayerData> sortedRecords = DataManager.Instance.records.OrderByDescending(s => s.score).ToList();
             for (int i = 0; i < sortedRecords.Count; i++)
@@ -26,7 +26,7 @@ public class UiManager : MonoBehaviour
 
             }
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else if (DataManager.Instance.records.Count>0&&SceneManager.GetActiveScene().buildIndex == 1)
         {
             List<DataManager.PlayerData> sortedRecords = DataManager.Instance.records.OrderByDescending(s => s.score).ToList();
             topScore.text = $"Top Score: {sortedRecords[0].name} : {sortedRecords[0].score}";

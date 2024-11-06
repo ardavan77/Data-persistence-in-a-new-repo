@@ -43,7 +43,6 @@ public class DataManager : MonoBehaviour
         SaveData data = new SaveData();
         data.records = records;
         string json = JsonUtility.ToJson(data);
-        Debug.Log(json);
         File.WriteAllText(Application.persistentDataPath + "/savefile.Json", json);
 
     }
@@ -55,13 +54,11 @@ public class DataManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             records = data.records;
-
         }
     }
     public void StoreCurrentPlayer(String inputName)
     {
         currentPlayerName = inputName;
-        Debug.Log(currentPlayerName);
     }
     public void StoreCurrentPlayer(string inputName, int currentscore)
     {
